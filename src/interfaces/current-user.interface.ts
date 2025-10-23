@@ -1,8 +1,8 @@
-import { type UserRole } from '../types'
+import { type UserType } from '../types'
 
 export interface ICurrentUser {
 	id: number
 	uuid?: string
-	role: UserRole
+	type: UserType
 	email?: string
 }

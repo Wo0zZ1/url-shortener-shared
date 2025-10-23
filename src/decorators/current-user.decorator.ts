@@ -2,7 +2,7 @@ import { createParamDecorator, type ExecutionContext } from '@nestjs/common'
 
 import { type ICurrentUser } from '../interfaces'
 import { type Request } from 'express'
-import { type UserRole } from '../types'
+import { type UserType } from '../types'
 
 export const CurrentUser = createParamDecorator(
 	(data: unknown, ctx: ExecutionContext): ICurrentUser => {
@@ -11,7 +11,7 @@ export const CurrentUser = createParamDecorator(
 
 		return {
 			id: Number(headers['x-user-id']),
-			role: headers['x-user-role'] as UserRole,
+			type: headers['x-user-type'] as UserType,
 			email: headers['x-user-email'] as string,
 		}
 	},
