@@ -1,8 +1,8 @@
 import { type UserType } from '../../types'
-import { type UserProfileEntity } from './user-profile.entity'
-import { type UserStatsEntity } from './user-stats.entity'
+import { type IUserProfileEntity } from './user-profile.entity'
+import { type IUserStatsEntity } from './user-stats.entity'
 
-export interface UserEntity {
+export interface IUserEntity {
 	id: number
 
 	uuid: string | null
@@ -11,7 +11,7 @@ export interface UserEntity {
 
 	createdAt: Date
 
-	userProfile: UserProfileEntity | null
+	userProfile: IUserProfileEntity | null
 
-	userStats: UserStatsEntity | null
+	userStats: IUserStatsEntity | null
 }

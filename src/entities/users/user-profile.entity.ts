@@ -1,4 +1,4 @@
-export interface UserProfileEntity {
+export interface IUserProfileEntity {
 	id: number
 
 	userName: string

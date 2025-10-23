@@ -1,11 +1,11 @@
-import { CreateUserStatsDto, CreateUserProfileDto } from '../users'
+import { ICreateUserStatsDto, ICreateUserProfileDto } from '../users'
 
-export interface RegisterUserDto {
+export interface IRegisterUserDto {
 	login: string
 
 	password: string
 
-	userProfile: CreateUserProfileDto
+	userProfile: ICreateUserProfileDto
 
-	userStats?: CreateUserStatsDto
+	userStats?: ICreateUserStatsDto
 }

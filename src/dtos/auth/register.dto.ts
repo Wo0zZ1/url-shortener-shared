@@ -1,5 +1,5 @@
-import { type CreateUserProfileDto } from '../users'
+import { type ICreateUserProfileDto } from '../users'
 
-export interface MigrateGuestDto {
-	userProfile?: CreateUserProfileDto
+export interface IMigrateGuestDto {
+	userProfile?: ICreateUserProfileDto
 }

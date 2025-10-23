@@ -1,4 +1,4 @@
-export interface LinkRedirect {
+export interface ILinkRedirect {
 	id: number
 
 	linkStatsId: number

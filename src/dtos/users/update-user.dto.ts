@@ -1,13 +1,13 @@
 import { type UserType } from '../../types'
-import { type UpdateUserProfileDto } from './update-user-profile.dto'
-import { type UpdateUserStatsDto } from './update-user-stats.dto'
+import { type IUpdateUserProfileDto } from './update-user-profile.dto'
+import { type IUpdateUserStatsDto } from './update-user-stats.dto'
 
-export interface UpdateUserDto {
+export interface IUpdateUserDto {
 	type?: UserType
 
 	uuid?: string | null
 
-	userProfile?: UpdateUserProfileDto
+	userProfile?: IUpdateUserProfileDto
 
-	userStats?: UpdateUserStatsDto
+	userStats?: IUpdateUserStatsDto
 }

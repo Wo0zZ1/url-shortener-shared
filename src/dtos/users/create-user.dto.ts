@@ -1,13 +1,13 @@
 import type { UserType } from '../../types'
-import type { CreateUserProfileDto } from './create-user-profile.dto'
-import type { CreateUserStatsDto } from './create-user-stats.dto'
+import type { ICreateUserProfileDto } from './create-user-profile.dto'
+import type { ICreateUserStatsDto } from './create-user-stats.dto'
 
-export interface CreateUserDto {
+export interface ICreateUserDto {
 	type?: UserType
 
 	uuid?: string
 
-	userProfile?: CreateUserProfileDto
+	userProfile?: ICreateUserProfileDto
 
-	userStats?: CreateUserStatsDto
+	userStats?: ICreateUserStatsDto
 }

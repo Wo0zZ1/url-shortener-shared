@@ -1,4 +1,4 @@
-export interface CreateLinkDto {
+export interface ICreateLinkDto {
 	userId: number
 
 	baseLink: string

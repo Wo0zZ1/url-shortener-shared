@@ -1,6 +1,6 @@
-import { type LinkStats } from './link-stats.entity'
+import { type ILinkStats } from './link-stats.entity'
 
-export interface Link {
+export interface ILink {
 	id: number
 
 	userId: number
@@ -13,5 +13,5 @@ export interface Link {
 
 	createdAt: Date
 
-	linkStats?: LinkStats
+	linkStats?: ILinkStats
 }

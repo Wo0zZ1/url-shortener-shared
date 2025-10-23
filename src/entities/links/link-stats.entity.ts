@@ -1,11 +1,11 @@
-import { type LinkRedirect } from './link-redirect.entity'
+import { type ILinkRedirect } from './link-redirect.entity'
 
-export interface LinkStats {
+export interface ILinkStats {
 	id: number
 
 	redirectsCount: number
 
 	createdAt: Date
 
-	linkRedirects?: LinkRedirect[]
+	linkRedirects?: ILinkRedirect[]
 }

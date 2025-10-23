@@ -1,5 +1,5 @@
-import { type CreateUserStatsDto } from '../users'
+import { type ICreateUserStatsDto } from '../users'
 
-export interface RegisterGuestDto {
-	userStats?: CreateUserStatsDto
+export interface IRegisterGuestDto {
+	userStats?: ICreateUserStatsDto
 }

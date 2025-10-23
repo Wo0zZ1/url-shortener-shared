@@ -1,4 +1,4 @@
-export interface CreateUserProfileDto {
+export interface ICreateUserProfileDto {
 	email?: string
 
 	userName: string

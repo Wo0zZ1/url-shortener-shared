@@ -1,4 +1,4 @@
-export interface UpdateUserProfileDto {
+export interface IUpdateUserProfileDto {
 	email?: string | null
 
 	userName?: string

@@ -1,3 +1,3 @@
-export interface CreateUserStatsDto {
+export interface ICreateUserStatsDto {
 	created_links?: number
 }
