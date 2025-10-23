@@ -1,12 +1,10 @@
-import { IsEnum, IsNotEmpty, IsOptional, IsString, ValidateNested } from 'class-validator'
+import { IsEnum, IsOptional, IsString, IsNotEmpty, ValidateNested } from 'class-validator'
 import { Type } from 'class-transformer'
 
-import type { UserType } from '../../types'
-import {
-	CreateUserProfileDto,
-	type ICreateUserProfileDto,
-} from './create-user-profile.dto'
-import { CreateUserStatsDto, type ICreateUserStatsDto } from './create-user-stats.dto'
+import { UserType } from '../../types'
+
+import { ICreateUserProfileDto, CreateUserProfileDto } from './create-user-profile.dto'
+import { ICreateUserStatsDto, CreateUserStatsDto } from './create-user-stats.dto'
 
 export interface ICreateUserDto {
 	type?: UserType
@@ -15,7 +13,7 @@ export interface ICreateUserDto {
 	userStats?: ICreateUserStatsDto
 }
 
-export class CreateUserDto {
+export class CreateUserDto implements ICreateUserDto {
 	@IsEnum(['Admin', 'User', 'Guest'])
 	@IsOptional()
 	type?: UserType

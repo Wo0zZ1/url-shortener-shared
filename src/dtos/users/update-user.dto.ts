@@ -1,12 +1,10 @@
-import { Type } from 'class-transformer'
 import { IsOptional, IsEnum, IsString, IsNotEmpty, ValidateNested } from 'class-validator'
+import { Type } from 'class-transformer'
 
-import { type UserType } from '../../types'
-import {
-	UpdateUserProfileDto,
-	type IUpdateUserProfileDto,
-} from './update-user-profile.dto'
-import { UpdateUserStatsDto, type IUpdateUserStatsDto } from './update-user-stats.dto'
+import { UserType } from '../../types'
+
+import { IUpdateUserProfileDto, UpdateUserProfileDto } from './update-user-profile.dto'
+import { IUpdateUserStatsDto, UpdateUserStatsDto } from './update-user-stats.dto'
 
 export interface IUpdateUserDto {
 	type?: UserType
@@ -15,7 +13,7 @@ export interface IUpdateUserDto {
 	userStats?: IUpdateUserStatsDto
 }
 
-export class UpdateUserDto {
+export class UpdateUserDto implements IUpdateUserDto {
 	@IsOptional()
 	@IsEnum(['Admin', 'User', 'Guest'])
 	type?: UserType
