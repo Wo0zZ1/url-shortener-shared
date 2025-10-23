@@ -1,11 +1,36 @@
-import { ICreateUserStatsDto, ICreateUserProfileDto } from '../users'
+import { Type } from 'class-transformer'
+import { IsString, IsNotEmpty, ValidateNested, IsOptional } from 'class-validator'
+
+import {
+	ICreateUserStatsDto,
+	ICreateUserProfileDto,
+	CreateUserProfileDto,
+	CreateUserStatsDto,
+} from '../users'
 
 export interface IRegisterUserDto {
 	login: string
+	password: string
+	userProfile: ICreateUserProfileDto
+	userStats?: ICreateUserStatsDto
+}
 
+export class RegisterUserDto implements IRegisterUserDto {
+	@IsString()
+	@IsNotEmpty()
+	login: string
+
+	@IsString()
+	@IsNotEmpty()
 	password: string
 
-	userProfile: ICreateUserProfileDto
+	@ValidateNested()
+	@IsNotEmpty()
+	@Type(() => CreateUserProfileDto)
+	userProfile: CreateUserProfileDto
 
-	userStats?: ICreateUserStatsDto
+	@IsOptional()
+	@ValidateNested()
+	@Type(() => CreateUserStatsDto)
+	userStats?: CreateUserStatsDto
 }
