@@ -1,8 +1,11 @@
-import { Transport, type ClientProviderOptions } from '@nestjs/microservices'
+import {
+	MicroserviceOptions,
+	Transport,
+	type ClientProviderOptions,
+} from '@nestjs/microservices'
 import { EventQueue, EventService } from '../events'
 
-export const UserServiceClient: ClientProviderOptions = {
-	name: EventService.USER_SERVICE,
+export const UserMicroservice: MicroserviceOptions = {
 	transport: Transport.RMQ,
 	options: {
 		urls: [process.env.RABBITMQ_URL as string],
@@ -10,5 +13,12 @@ export const UserServiceClient: ClientProviderOptions = {
 		queueOptions: {
 			durable: true,
 		},
+		noAck: false,
+		wildcards: true,
 	},
+}
+
+export const UserServiceClient: ClientProviderOptions = {
+	name: EventService.USER_SERVICE,
+	...UserMicroservice,
 }
