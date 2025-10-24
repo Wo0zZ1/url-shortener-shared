@@ -30,6 +30,7 @@ export function getUserServiceConfig(rabbitmqUrl: string): ClientProviderOptions
 			queueOptions: {
 				durable: true,
 			},
+			persistent: true,
 		},
 	}
 }
