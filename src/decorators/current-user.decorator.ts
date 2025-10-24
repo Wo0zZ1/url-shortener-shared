@@ -6,7 +6,7 @@ import { type UserType } from '../types'
 
 export const CurrentUser = createParamDecorator(
 	(data: unknown, ctx: ExecutionContext): ICurrentUser => {
-		const request = ctx.switchToHttp().getRequest() as Request
+		const request = ctx.switchToHttp().getRequest<Request>()
 		const headers = request.headers
 
 		return {

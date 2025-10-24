@@ -8,11 +8,9 @@ export interface ILoginDto {
 export class LoginDto implements ILoginDto {
 	@IsString()
 	@IsNotEmpty()
-	@IsOptional()
 	login: string
 
 	@IsString()
 	@IsNotEmpty()
-	@IsOptional()
 	password: string
 }

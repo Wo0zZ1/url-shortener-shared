@@ -1,5 +1,12 @@
 import { Type } from 'class-transformer'
-import { IsString, IsNotEmpty, ValidateNested, IsOptional } from 'class-validator'
+import {
+	IsString,
+	IsNotEmpty,
+	ValidateNested,
+	IsOptional,
+	MinLength,
+	MaxLength,
+} from 'class-validator'
 
 import {
 	ICreateUserStatsDto,
@@ -21,7 +28,8 @@ export class RegisterUserDto implements IRegisterUserDto {
 	login: string
 
 	@IsString()
-	@IsNotEmpty()
+	@MinLength(6)
+	@MaxLength(100)
 	password: string
 
 	@ValidateNested()
@@ -29,8 +37,8 @@ export class RegisterUserDto implements IRegisterUserDto {
 	@Type(() => CreateUserProfileDto)
 	userProfile: CreateUserProfileDto
 
-	@IsOptional()
 	@ValidateNested()
+	@IsOptional()
 	@Type(() => CreateUserStatsDto)
 	userStats?: CreateUserStatsDto
 }
