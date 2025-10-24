@@ -1,11 +1,11 @@
 import {
 	MicroserviceOptions,
 	Transport,
-	type ClientProviderOptions,
+	ClientProviderOptions,
 } from '@nestjs/microservices'
 import { EventQueue, EventService } from '../events'
 
-export const AuthMicroservice: MicroserviceOptions = {
+export const AuthMicroservice = {
 	transport: Transport.RMQ,
 	options: {
 		urls: [process.env.RABBITMQ_URL as string],
@@ -16,9 +16,13 @@ export const AuthMicroservice: MicroserviceOptions = {
 		noAck: false,
 		wildcards: true,
 	},
-}
+} as MicroserviceOptions
 
-export const AuthServiceClient: ClientProviderOptions = {
+export type AuthMicroserviceType = typeof AuthMicroservice
+
+export const AuthServiceClient = {
 	name: EventService.AUTH_SERVICE,
 	...AuthMicroservice,
-}
+} as ClientProviderOptions
+
+export type AuthServiceClientType = typeof AuthServiceClient
