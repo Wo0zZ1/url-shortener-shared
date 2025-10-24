@@ -27,5 +27,9 @@ export function getAuthServiceConfig(rabbitmqUrl: string): ClientProviderOptions
 	return {
 		name: EventService.AUTH_SERVICE,
 		...microserviceConfig,
+		options: {
+			...microserviceConfig.options,
+			noAck: true,
+		},
 	}
 }

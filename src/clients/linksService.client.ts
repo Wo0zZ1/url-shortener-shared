@@ -27,5 +27,9 @@ export function getLinkServiceConfig(rabbitmqUrl: string): ClientProviderOptions
 	return {
 		name: EventService.LINK_SERVICE,
 		...microserviceConfig,
+		options: {
+			...microserviceConfig.options,
+			noAck: true,
+		},
 	}
 }
