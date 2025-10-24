@@ -29,6 +29,11 @@ export function getAuthServiceConfig(rabbitmqUrl: string): ClientProviderOptions
 			queue: EventQueue.AUTH_SERVICE,
 			queueOptions: {
 				durable: true,
+				arguments: {
+					'x-message-ttl': 10000,
+					'x-dead-letter-exchange': '',
+					'x-dead-letter-routing-key': EventQueue.LINK_SERVICE,
+				},
 			},
 			persistent: true,
 		},
