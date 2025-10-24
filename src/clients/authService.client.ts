@@ -2,7 +2,6 @@ import {
 	MicroserviceOptions,
 	Transport,
 	ClientProviderOptions,
-	RmqOptions,
 } from '@nestjs/microservices'
 import { EventQueue, EventService } from '../events'
 
@@ -16,20 +15,21 @@ export function getAuthMicroserviceConfig(rabbitmqUrl: string): MicroserviceOpti
 				durable: true,
 			},
 			noAck: false,
-			wildcards: true,
+			// wildcards: true,
 		},
 	}
 }
 
 export function getAuthServiceConfig(rabbitmqUrl: string): ClientProviderOptions {
-	const microserviceConfig = getAuthMicroserviceConfig(rabbitmqUrl) as RmqOptions
-
 	return {
 		name: EventService.AUTH_SERVICE,
-		...microserviceConfig,
+		transport: Transport.RMQ,
 		options: {
-			...microserviceConfig.options,
-			noAck: true,
+			urls: [rabbitmqUrl],
+			queue: EventQueue.AUTH_SERVICE,
+			queueOptions: {
+				durable: true,
+			},
 		},
 	}
 }
