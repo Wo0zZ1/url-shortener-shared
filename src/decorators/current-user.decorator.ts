@@ -5,14 +5,16 @@ import { type ICurrentUser } from '../interfaces'
 import { type UserType } from '../types'
 
 export const CurrentUser = createParamDecorator(
-	(data: unknown, ctx: ExecutionContext): ICurrentUser => {
+	(data: unknown, ctx: ExecutionContext) => {
 		const request = ctx.switchToHttp().getRequest<Request>()
 		const headers = request.headers
 
-		return {
+		const currentUser: ICurrentUser = {
 			id: Number(headers['x-user-id']),
+			uuid: headers['x-user-uuid'] as string | undefined,
 			type: headers['x-user-type'] as UserType,
-			email: headers['x-user-email'] as string,
 		}
+
+		return currentUser
 	},
 )

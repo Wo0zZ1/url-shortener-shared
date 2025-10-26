@@ -4,5 +4,4 @@ export interface ICurrentUser {
 	id: number
 	uuid?: string
 	type: UserType
-	email?: string
 }
