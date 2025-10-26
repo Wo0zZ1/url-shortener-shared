@@ -1,4 +1,6 @@
 export * from './login.dto'
+export * from './logout.dto'
+export * from './refresh-token.dto'
 export * from './register-guest.dto'
 export * from './register-user.dto'
 export * from './register.dto'
