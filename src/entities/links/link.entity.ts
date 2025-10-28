@@ -11,5 +11,5 @@ export interface ILink {
 
 	createdAt: Date
 
-	linkStats?: ILinkStats
+	linkStats?: ILinkStats | null
 }

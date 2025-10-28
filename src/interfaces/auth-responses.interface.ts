@@ -1,3 +1,5 @@
+import { RefreshTokenPayload } from './jwt.interface'
+
 export interface Tokens {
 	accessToken: string
 	refreshToken: string
@@ -42,12 +44,4 @@ export interface MessageResponse {
 	message: string
 }
 
-export interface SessionInfo {
-	jti: number
-	sub: number
-	iat: Date
-	exp: Date
-	revoked: boolean
-	device?: string
-	ip?: string
-}
+export type UserSessionsResponse = RefreshTokenPayload[]

@@ -7,5 +7,5 @@ export interface ILinkStats {
 
 	createdAt: Date
 
-	linkRedirects?: ILinkRedirect[]
+	linkRedirects?: ILinkRedirect[] | null
 }
