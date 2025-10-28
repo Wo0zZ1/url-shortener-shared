@@ -1,23 +1,7 @@
-export interface LinkEntity {
-	id: number
-	userId: number
-	originalUrl: string
-	shortLink: string
-	createdAt: Date
-	updatedAt: Date
-	linkStats?: LinkStatsEntity
-}
-
-export interface LinkStatsEntity {
-	id: number
-	linkId: number
-	totalClicks: number
-	uniqueClicks: number
-	lastClickedAt?: Date
-}
+import { ILink } from '../entities'
 
 export interface PaginatedLinks {
-	links: LinkEntity[]
+	links: ILink[]
 	total: number
 	page: number
 	limit: number

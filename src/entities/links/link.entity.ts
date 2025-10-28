@@ -9,8 +9,6 @@ export interface ILink {
 
 	shortLink: string
 
-	linkStatsId: number
-
 	createdAt: Date
 
 	linkStats?: ILinkStats
