@@ -1,9 +1,5 @@
 import { UserEntity } from '../entities'
 
-// ============================================
-// User Responses (in method order)
-// ============================================
-
 /**
  * Response for POST /users
  */
