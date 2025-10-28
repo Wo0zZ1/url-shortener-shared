@@ -1,4 +1,6 @@
+import { UserEntity } from '../entities'
 import { RefreshTokenPayload, UserDataFromAccessTokenPayload } from '../interfaces'
+import { MessageResponse } from './base.responses'
 
 export interface Tokens {
 	accessToken: string
@@ -12,11 +14,7 @@ export interface LoginResponse {
 
 export interface RegisterGuestResponse {
 	uuid: string
-	createdUser: {
-		id: number
-		uuid: string
-		type: string
-	}
+	createdUser: UserEntity
 }
 
 export interface RegisterUserResponse {
@@ -31,6 +29,10 @@ export interface RegisterUserResponse {
 
 export type UserSessionsResponse = RefreshTokenPayload[]
 
-export type RefreshTokenResponse = Tokens
+export type RefreshTokensResponse = Tokens
+
+export type LogoutResponse = MessageResponse
+
+export type logoutAllResponse = MessageResponse
 
 export type GetCurrentUserResponse = UserDataFromAccessTokenPayload
