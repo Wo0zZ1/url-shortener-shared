@@ -1,19 +1,10 @@
-import { UserEntity } from '../entities'
-import { RefreshTokenPayload, UserDataFromAccessTokenPayload } from '../interfaces'
-import { MessageResponse } from './base.responses'
-
-// ============================================
-// Common Types
-// ============================================
-
-export interface Tokens {
-	accessToken: string
-	refreshToken: string
-}
-
-// ============================================
-// Auth Responses (in method order)
-// ============================================
+import type { UserEntity } from '../entities'
+import type {
+	RefreshTokenPayload,
+	Tokens,
+	UserDataFromAccessTokenPayload,
+} from '../interfaces'
+import type { MessageResponse } from './base.responses'
 
 /**
  * Response for POST /auth/register-guest
