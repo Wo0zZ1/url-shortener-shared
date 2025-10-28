@@ -30,12 +30,16 @@ export interface RegisterResponse {
 }
 
 export interface RegisterGuestResponse {
+	uuid: string
 	createdUser: {
 		id: number
 		uuid: string
 		type: string
 	}
-	uuid: string
+}
+
+export interface MessageResponse {
+	message: string
 }
 
 export interface SessionInfo {
