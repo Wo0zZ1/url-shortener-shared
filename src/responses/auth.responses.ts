@@ -2,37 +2,68 @@ import { UserEntity } from '../entities'
 import { RefreshTokenPayload, UserDataFromAccessTokenPayload } from '../interfaces'
 import { MessageResponse } from './base.responses'
 
+// ============================================
+// Common Types
+// ============================================
+
 export interface Tokens {
 	accessToken: string
 	refreshToken: string
 }
 
-export interface LoginResponse {
-	user: UserDataFromAccessTokenPayload
-	tokens: Tokens
-}
+// ============================================
+// Auth Responses (in method order)
+// ============================================
 
+/**
+ * Response for POST /auth/register-guest
+ */
 export interface RegisterGuestResponse {
 	uuid: string
 	createdUser: UserEntity
 }
 
+/**
+ * Response for POST /auth/register-user
+ */
 export interface RegisterUserResponse {
-	createdUser: {
-		id: number
-		uuid?: string
-		email?: string
-		username?: string
-		type: string
-	}
+	createdUser: UserEntity
 }
 
-export type UserSessionsResponse = RefreshTokenPayload[]
+/**
+ * Response for POST /auth/login
+ */
+export interface LoginResponse {
+	user: UserDataFromAccessTokenPayload
+	tokens: Tokens
+}
 
-export type RefreshTokensResponse = Tokens
+/**
+ * Response for POST /auth/refresh
+ */
+export type RefreshTokenResponse = Tokens
 
+/**
+ * Response for POST /auth/logout
+ */
 export type LogoutResponse = MessageResponse
 
-export type logoutAllResponse = MessageResponse
+/**
+ * Response for POST /auth/logout-all
+ */
+export type LogoutAllResponse = MessageResponse
 
+/**
+ * Response for GET /auth/me
+ */
 export type GetCurrentUserResponse = UserDataFromAccessTokenPayload
+
+/**
+ * Response for GET /auth/user/:userId/sessions
+ */
+export type GetActiveSessionsResponse = RefreshTokenPayload[]
+
+/**
+ * Response for DELETE /auth/user/:userId/sessions/:jti
+ */
+export type RevokeSessionResponse = MessageResponse
