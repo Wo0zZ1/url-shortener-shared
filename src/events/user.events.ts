@@ -30,7 +30,7 @@ export enum EventQueue {
 
 export interface UserMigratedFromGuestEvent {
 	guestUserId: number
-	guestUUID: string
+	guestUuid: string
 	targetUserId: number
 	timestamp: Date
 }

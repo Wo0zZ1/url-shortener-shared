@@ -20,6 +20,7 @@ export class UpdateUserDto implements IUpdateUserDto {
 	@ApiProperty({
 		description: 'Type of the user',
 		example: 'User',
+		required: false,
 		enum: ['Admin', 'User', 'Guest'],
 	})
 	type?: UserType
@@ -29,6 +30,7 @@ export class UpdateUserDto implements IUpdateUserDto {
 	@IsOptional()
 	@ApiProperty({
 		description: 'User UUID',
+		required: false,
 		example: '550e8400-e29b-41d4-a716-446655440000',
 	})
 	uuid?: string | null
@@ -36,12 +38,12 @@ export class UpdateUserDto implements IUpdateUserDto {
 	@IsOptional()
 	@ValidateNested()
 	@Type(() => UpdateUserProfileDto)
-	@ApiProperty({ type: UpdateUserProfileDto })
+	@ApiProperty({ type: UpdateUserProfileDto, required: false })
 	userProfile?: UpdateUserProfileDto
 
 	@IsOptional()
 	@ValidateNested()
 	@Type(() => UpdateUserStatsDto)
-	@ApiProperty({ type: UpdateUserStatsDto })
+	@ApiProperty({ type: UpdateUserStatsDto, required: false })
 	userStats?: UpdateUserStatsDto
 }

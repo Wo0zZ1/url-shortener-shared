@@ -12,24 +12,28 @@ export class UpdateUserProfileDto implements IUpdateUserProfileDto {
 	@IsString()
 	@IsNotEmpty()
 	@IsOptional()
-	@ApiProperty({ description: 'User email address', example: 'user_login' })
+	@ApiProperty({
+		description: 'User email address',
+		required: false,
+		example: 'user_login',
+	})
 	email?: string | null
 
 	@IsString()
 	@IsNotEmpty()
 	@IsOptional()
-	@ApiProperty({ description: 'User name', example: 'user_name' })
+	@ApiProperty({ description: 'User name', required: false, example: 'user_name' })
 	userName?: string
 
 	@IsString()
 	@IsNotEmpty()
 	@IsOptional()
-	@ApiProperty({ description: 'User first name', example: 'John' })
+	@ApiProperty({ description: 'User first name', required: false, example: 'John' })
 	firstName?: string | null
 
 	@IsString()
 	@IsNotEmpty()
 	@IsOptional()
-	@ApiProperty({ description: 'User last name', example: 'Doe' })
+	@ApiProperty({ description: 'User last name', required: false, example: 'Doe' })
 	lastName?: string | null
 }

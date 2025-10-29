@@ -8,6 +8,10 @@ export interface IUpdateUserStatsDto {
 export class UpdateUserStatsDto implements IUpdateUserStatsDto {
 	@IsOptional()
 	@IsNumber()
-	@ApiProperty({ description: 'Number of links created by the user', example: 0 })
+	@ApiProperty({
+		description: 'Number of links created by the user',
+		required: false,
+		example: 0,
+	})
 	created_links?: number
 }

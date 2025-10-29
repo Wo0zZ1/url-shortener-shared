@@ -19,6 +19,6 @@ export class CreateLinkDto implements ICreateLinkDto {
 
 	@IsString()
 	@IsOptional()
-	@ApiProperty({ description: 'Custom short link', example: 'mylink' })
+	@ApiProperty({ description: 'Custom short link', required: false, example: 'mylink' })
 	customShortLink?: string
 }

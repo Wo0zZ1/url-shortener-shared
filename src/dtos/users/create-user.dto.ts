@@ -20,6 +20,7 @@ export class CreateUserDto implements ICreateUserDto {
 	@ApiProperty({
 		description: 'Type of the user',
 		enum: ['Admin', 'User', 'Guest'],
+		required: false,
 		example: 'User',
 	})
 	type?: UserType
@@ -29,17 +30,18 @@ export class CreateUserDto implements ICreateUserDto {
 	@IsOptional()
 	@ApiProperty({
 		description: 'User UUID',
+		required: false,
 		example: '550e8400-e29b-41d4-a716-446655440000',
 	})
 	uuid?: string
 
 	@ValidateNested()
 	@Type(() => CreateUserProfileDto)
-	@ApiProperty({ type: CreateUserProfileDto })
+	@ApiProperty({ type: CreateUserProfileDto, required: false })
 	userProfile?: CreateUserProfileDto
 
 	@ValidateNested()
 	@Type(() => CreateUserStatsDto)
-	@ApiProperty({ type: CreateUserStatsDto })
+	@ApiProperty({ type: CreateUserStatsDto, required: false })
 	userStats?: CreateUserStatsDto
 }

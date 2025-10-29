@@ -12,7 +12,11 @@ export class CreateUserProfileDto implements ICreateUserProfileDto {
 	@IsString()
 	@IsNotEmpty()
 	@IsOptional()
-	@ApiProperty({ description: 'User email address', example: 'user_login' })
+	@ApiProperty({
+		description: 'User email address',
+		required: false,
+		example: 'example@email.com',
+	})
 	email?: string
 
 	@IsString()
@@ -23,12 +27,12 @@ export class CreateUserProfileDto implements ICreateUserProfileDto {
 	@IsString()
 	@IsNotEmpty()
 	@IsOptional()
-	@ApiProperty({ description: 'User first name', example: 'John' })
+	@ApiProperty({ description: 'User first name', required: false, example: 'John' })
 	firstName?: string
 
 	@IsString()
 	@IsNotEmpty()
 	@IsOptional()
-	@ApiProperty({ description: 'User last name', example: 'Doe' })
+	@ApiProperty({ description: 'User last name', required: false, example: 'Doe' })
 	lastName?: string
 }
