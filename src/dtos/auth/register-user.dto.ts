@@ -3,7 +3,6 @@ import {
 	IsString,
 	IsNotEmpty,
 	ValidateNested,
-	IsOptional,
 	MinLength,
 	MaxLength,
 } from 'class-validator'
@@ -36,9 +35,4 @@ export class RegisterUserDto implements IRegisterUserDto {
 	@IsNotEmpty()
 	@Type(() => CreateUserProfileDto)
 	userProfile: CreateUserProfileDto
-
-	@ValidateNested()
-	@IsOptional()
-	@Type(() => CreateUserStatsDto)
-	userStats?: CreateUserStatsDto
 }
