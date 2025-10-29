@@ -10,7 +10,6 @@ import type { MessageResponse } from './base.responses'
  * Response for POST /auth/register-guest
  */
 export interface RegisterGuestResponse {
-	uuid: string
 	createdUser: UserEntity
 }
 
