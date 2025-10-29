@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger'
 import { IsNumber, IsOptional } from 'class-validator'
 
 export interface IUpdateUserStatsDto {
@@ -7,5 +8,6 @@ export interface IUpdateUserStatsDto {
 export class UpdateUserStatsDto implements IUpdateUserStatsDto {
 	@IsOptional()
 	@IsNumber()
+	@ApiProperty({ description: 'Number of links created by the user', example: 0 })
 	created_links?: number
 }

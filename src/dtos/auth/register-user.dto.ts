@@ -13,6 +13,7 @@ import {
 	CreateUserProfileDto,
 	CreateUserStatsDto,
 } from '../users'
+import { ApiProperty } from '@nestjs/swagger'
 
 export interface IRegisterUserDto {
 	login: string
@@ -24,15 +25,18 @@ export interface IRegisterUserDto {
 export class RegisterUserDto implements IRegisterUserDto {
 	@IsString()
 	@IsNotEmpty()
+	@ApiProperty({ description: 'User login', example: 'user_login' })
 	login: string
 
 	@IsString()
 	@MinLength(6)
 	@MaxLength(100)
+	@ApiProperty({ description: 'User password', example: 'user_password' })
 	password: string
 
 	@ValidateNested()
 	@IsNotEmpty()
+	@ApiProperty({ type: CreateUserProfileDto })
 	@Type(() => CreateUserProfileDto)
 	userProfile: CreateUserProfileDto
 }
