@@ -3,19 +3,19 @@ export interface ILinkRedirect {
 
 	linkStatsId: number
 
-	ip?: string
+	ip?: string | null
 
 	browser?: string
 
-	os?: string
+	os?: string | null
 
-	device?: string
+	device?: string | null
 
-	isMobile?: boolean
+	isMobile?: boolean | null
 
-	isTablet?: boolean
+	isTablet?: boolean | null
 
-	country?: string
+	country?: string | null
 
 	clickedAt: Date
 }
