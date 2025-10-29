@@ -5,7 +5,7 @@ export interface ILinkRedirect {
 
 	ip?: string | null
 
-	browser?: string
+	browser?: string | null
 
 	os?: string | null
 
