@@ -22,11 +22,10 @@ export function getLinkMicroserviceConfig(rabbitmqUrl: string): MicroserviceOpti
 		options: {
 			urls: [rabbitmqUrl],
 			queue: EventQueue.LINK_SERVICE,
-			queueOptions: {
-				durable: true,
-			},
-			noAck: false,
+			queueOptions: { durable: true },
+			exchange: EVENTS_EXCHANGE,
 			exchangeType: EXCHANGE_TYPE,
+			noAck: false,
 		},
 	}
 }
@@ -43,6 +42,7 @@ export function getLinkServiceConfig(rabbitmqUrl: string): ClientProviderOptions
 			exchange: EVENTS_EXCHANGE,
 			exchangeType: EXCHANGE_TYPE,
 			queue: EventQueue.LINK_SERVICE,
+			queueOptions: { durable: true },
 			persistent: true,
 		},
 	}

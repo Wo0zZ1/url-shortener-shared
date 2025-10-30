@@ -12,7 +12,6 @@ import { EventQueue, EventService, EVENTS_EXCHANGE, EXCHANGE_TYPE } from '../eve
  * Фильтрация происходит внутри сервиса через @EventPattern()
  *
  * Пример обработчиков в USER_SERVICE:
- * @EventPattern('link.created')  - обработает (обновление статистики)
  * @EventPattern('link.deleted')  - обработает
  * @EventPattern('link.redirect') - обработает (подсчет кликов)
  * user.deleted - придет в очередь, но будет проигнорирован
@@ -23,16 +22,10 @@ export function getUserMicroserviceConfig(rabbitmqUrl: string): MicroserviceOpti
 		options: {
 			urls: [rabbitmqUrl],
 			queue: EventQueue.USER_SERVICE,
-			queueOptions: {
-				durable: true,
-				// arguments: {
-				// 	'x-message-ttl': 10000,
-				// 	'x-dead-letter-exchange': '',
-				// 	'x-dead-letter-routing-key': EventQueue.USER_SERVICE,
-				// },
-			},
-			noAck: false,
+			queueOptions: { durable: true },
+			exchange: EVENTS_EXCHANGE,
 			exchangeType: EXCHANGE_TYPE,
+			noAck: false,
 		},
 	}
 }
@@ -52,10 +45,8 @@ export function getUserServiceConfig(rabbitmqUrl: string): ClientProviderOptions
 			exchange: EVENTS_EXCHANGE,
 			exchangeType: EXCHANGE_TYPE,
 			queue: EventQueue.USER_SERVICE,
+			queueOptions: { durable: true },
 			persistent: true,
-			// queueOptions: {
-			//   durable: true
-			// },
 		},
 	}
 }

@@ -22,11 +22,10 @@ export function getAuthMicroserviceConfig(rabbitmqUrl: string): MicroserviceOpti
 		options: {
 			urls: [rabbitmqUrl],
 			queue: EventQueue.AUTH_SERVICE,
-			queueOptions: {
-				durable: true,
-			},
-			noAck: false,
+			queueOptions: { durable: true },
+			exchange: EVENTS_EXCHANGE,
 			exchangeType: EXCHANGE_TYPE,
+			noAck: false,
 		},
 	}
 }
@@ -46,6 +45,7 @@ export function getAuthServiceConfig(rabbitmqUrl: string): ClientProviderOptions
 			exchange: EVENTS_EXCHANGE,
 			exchangeType: EXCHANGE_TYPE,
 			queue: EventQueue.AUTH_SERVICE,
+			queueOptions: { durable: true },
 			persistent: true,
 		},
 	}
