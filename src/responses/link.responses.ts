@@ -36,6 +36,13 @@ export type GetLinkByShortLinkResponse = ILink
 export type DeleteLinkResponse = ILink
 
 /**
+ * Response for DELETE /links/user/:userId
+ */
+export interface DeleteUserLinksResponse {
+	count: number
+}
+
+/**
  * Response for GET /links/:shortLink/stats
  */
 export type GetLinkStatsResponse = ILinkStats
