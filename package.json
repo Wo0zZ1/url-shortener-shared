@@ -1,7 +1,7 @@
 {
 	"name": "@wo0zz1/url-shortener-shared",
 	"description": "Shared utilities for NestJS url shortener",
-	"version": "0.1.26",
+	"version": "0.1.27",
 	"main": "dist/index.js",
 	"scripts": {
 		"build": "tsc",

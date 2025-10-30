@@ -1,11 +1,10 @@
-// Exchange для событий (общий для всех сервисов)
+// Exchange for events (shared for all services)
 export const EVENTS_EXCHANGE = 'events_exchange'
 
-// Routing key для получения ВСЕХ событий
-// Каждый сервис подписывается на '#' и фильтрует события через @EventPattern()
+// Routing key for all events
 export const ALL_EVENTS_ROUTING_KEY = '#'
 
-// Event Patterns (используются в emit() и @EventPattern())
+// Event Patterns (used in emit() and @EventPattern())
 export enum EEventPattern {
 	// USER domain events
 	USER_CREATED = 'user.created',
@@ -16,7 +15,6 @@ export enum EEventPattern {
 
 	// LINK domain events
 	LINK_CREATED = 'link.created',
-	LINK_UPDATED = 'link.updated',
 	LINK_DELETED = 'link.deleted',
 	LINK_MIGRATED = 'link.migrated',
 	LINK_REDIRECT = 'link.redirect',
@@ -46,14 +44,7 @@ export enum EventQueue {
 // User Events
 export interface UserCreatedEvent {
 	userId: number
-	email?: string
 	uuid?: string
-	timestamp: Date
-}
-
-export interface UserUpdatedEvent {
-	userId: number
-	changes?: Record<string, any>
 	timestamp: Date
 }
 
@@ -79,15 +70,8 @@ export interface UserAccountsMergedEvent {
 export interface LinkCreatedEvent {
 	linkId: number
 	userId: number
-	shortUrl: string
-	originalUrl: string
-	timestamp: Date
-}
-
-export interface LinkUpdatedEvent {
-	linkId: number
-	userId: number
-	changes?: Record<string, any>
+	baseLink: string
+	shortLink: string
 	timestamp: Date
 }
 
@@ -104,28 +88,26 @@ export interface LinkMigratedEvent {
 }
 
 export interface LinkRedirectEvent {
-	linkStatsId: number
 	linkId: number
-	userId?: number
 	userAgent?: string
 	ip?: string
 	timestamp: Date
 }
 
 // Auth Events
-export interface AuthLoginEvent {
-	userId: number
-	ip?: string
-	userAgent?: string
-	timestamp: Date
-}
+// export interface AuthLoginEvent {
+// 	userId: number
+// 	ip?: string
+// 	userAgent?: string
+// 	timestamp: Date
+// }
 
-export interface AuthLogoutEvent {
-	userId: number
-	timestamp: Date
-}
+// export interface AuthLogoutEvent {
+// 	userId: number
+// 	timestamp: Date
+// }
 
-export interface AuthTokenRefreshedEvent {
-	userId: number
-	timestamp: Date
-}
+// export interface AuthTokenRefreshedEvent {
+// 	userId: number
+// 	timestamp: Date
+// }
