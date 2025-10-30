@@ -56,19 +56,11 @@ export function getAuthServiceConfig(rabbitmqUrl: string): ClientProviderOptions
 		transport: Transport.RMQ,
 		options: {
 			urls: [rabbitmqUrl],
-			queue: EventQueue.AUTH_SERVICE,
+			// НЕ указываем queue для клиента-публикатора
 			exchange: EVENTS_EXCHANGE,
 			exchangeOptions: {
 				type: 'topic',
 				durable: true,
-			},
-			queueOptions: {
-				durable: true,
-				arguments: {
-					'x-message-ttl': 10000,
-					'x-dead-letter-exchange': '',
-					'x-dead-letter-routing-key': EventQueue.AUTH_SERVICE,
-				},
 			},
 			persistent: true,
 		},

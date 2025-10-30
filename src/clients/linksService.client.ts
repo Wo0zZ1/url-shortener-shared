@@ -50,21 +50,14 @@ export function getLinkServiceConfig(rabbitmqUrl: string): ClientProviderOptions
 		transport: Transport.RMQ,
 		options: {
 			urls: [rabbitmqUrl],
-			queue: EventQueue.LINK_SERVICE,
-			exchange: EVENTS_EXCHANGE,
+			// НЕ указываем queue для клиента-публикатора
+			// queue: EventQueue.LINK_SERVICE, // ← УДАЛЯЕМ!
+			exchange: EVENTS_EXCHANGE, // Публикуем в exchange
 			exchangeOptions: {
 				type: 'topic',
 				durable: true,
 			},
-			queueOptions: {
-				durable: true,
-				arguments: {
-					'x-message-ttl': 10000,
-					'x-dead-letter-exchange': '',
-					'x-dead-letter-routing-key': EventQueue.LINK_SERVICE,
-				},
-			},
-			persistent: true,
+			persistent: true, // Сообщения сохраняются на диск
 		},
 	}
 }
