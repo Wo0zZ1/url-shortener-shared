@@ -32,9 +32,6 @@ export function getAuthMicroserviceConfig(rabbitmqUrl: string): MicroserviceOpti
 
 /**
  * Конфигурация Auth Service как клиента (для отправки событий)
- *
- * ВАЖНО: Для публикации событий НЕ указываем queue!
- * События отправляются в exchange, который сам роутит их по очередям
  */
 export function getAuthServiceConfig(rabbitmqUrl: string): ClientProviderOptions {
 	return {
@@ -42,10 +39,10 @@ export function getAuthServiceConfig(rabbitmqUrl: string): ClientProviderOptions
 		transport: Transport.RMQ,
 		options: {
 			urls: [rabbitmqUrl],
+			// queue: EventQueue.AUTH_SERVICE,
+			// queueOptions: { durable: true },
 			exchange: EVENTS_EXCHANGE,
 			exchangeType: EXCHANGE_TYPE,
-			queue: EventQueue.AUTH_SERVICE,
-			queueOptions: { durable: true },
 			persistent: true,
 		},
 	}

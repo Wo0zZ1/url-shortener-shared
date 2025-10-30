@@ -44,8 +44,8 @@ export function getUserServiceConfig(rabbitmqUrl: string): ClientProviderOptions
 			urls: [rabbitmqUrl],
 			exchange: EVENTS_EXCHANGE,
 			exchangeType: EXCHANGE_TYPE,
-			queue: EventQueue.USER_SERVICE,
-			queueOptions: { durable: true },
+			// queue: EventQueue.USER_SERVICE,
+			// queueOptions: { durable: true },
 			persistent: true,
 		},
 	}
