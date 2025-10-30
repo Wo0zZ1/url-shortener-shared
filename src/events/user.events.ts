@@ -1,9 +1,6 @@
 // Exchange for events (shared for all services)
 export const EVENTS_EXCHANGE = 'events_exchange'
-
-// Exchange type: 'fanout' рассылает ВСЕ события ВО ВСЕ очереди
-// Это проще чем 'topic' с routing keys
-export const EXCHANGE_TYPE = 'fanout' as const
+export const EXCHANGE_TYPE = 'topic'
 
 // Event Patterns (used in emit() and @EventPattern())
 export enum EEventPattern {

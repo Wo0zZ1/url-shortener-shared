@@ -25,15 +25,14 @@ export function getUserMicroserviceConfig(rabbitmqUrl: string): MicroserviceOpti
 			queue: EventQueue.USER_SERVICE,
 			queueOptions: {
 				durable: true,
-				arguments: {
-					'x-message-ttl': 10000,
-					'x-dead-letter-exchange': '',
-					'x-dead-letter-routing-key': EventQueue.USER_SERVICE,
-				},
+				// arguments: {
+				// 	'x-message-ttl': 10000,
+				// 	'x-dead-letter-exchange': '',
+				// 	'x-dead-letter-routing-key': EventQueue.USER_SERVICE,
+				// },
 			},
-			exchange: EVENTS_EXCHANGE,
-			exchangeType: EXCHANGE_TYPE,
 			noAck: false,
+			exchangeType: EXCHANGE_TYPE,
 		},
 	}
 }
@@ -50,10 +49,13 @@ export function getUserServiceConfig(rabbitmqUrl: string): ClientProviderOptions
 		transport: Transport.RMQ,
 		options: {
 			urls: [rabbitmqUrl],
-			// НЕ указываем queue для клиента-публикатора
 			exchange: EVENTS_EXCHANGE,
 			exchangeType: EXCHANGE_TYPE,
+			queue: EventQueue.USER_SERVICE,
 			persistent: true,
+			// queueOptions: {
+			//   durable: true
+			// },
 		},
 	}
 }

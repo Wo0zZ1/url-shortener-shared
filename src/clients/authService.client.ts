@@ -24,15 +24,9 @@ export function getAuthMicroserviceConfig(rabbitmqUrl: string): MicroserviceOpti
 			queue: EventQueue.AUTH_SERVICE,
 			queueOptions: {
 				durable: true,
-				arguments: {
-					'x-message-ttl': 10000,
-					'x-dead-letter-exchange': '',
-					'x-dead-letter-routing-key': EventQueue.AUTH_SERVICE,
-				},
 			},
-			exchange: EVENTS_EXCHANGE,
-			exchangeType: EXCHANGE_TYPE,
 			noAck: false,
+			exchangeType: EXCHANGE_TYPE,
 		},
 	}
 }
@@ -49,9 +43,9 @@ export function getAuthServiceConfig(rabbitmqUrl: string): ClientProviderOptions
 		transport: Transport.RMQ,
 		options: {
 			urls: [rabbitmqUrl],
-			// НЕ указываем queue для клиента-публикатора
 			exchange: EVENTS_EXCHANGE,
 			exchangeType: EXCHANGE_TYPE,
+			queue: EventQueue.AUTH_SERVICE,
 			persistent: true,
 		},
 	}

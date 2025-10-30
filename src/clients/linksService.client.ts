@@ -24,15 +24,9 @@ export function getLinkMicroserviceConfig(rabbitmqUrl: string): MicroserviceOpti
 			queue: EventQueue.LINK_SERVICE,
 			queueOptions: {
 				durable: true,
-				arguments: {
-					'x-message-ttl': 10000,
-					'x-dead-letter-exchange': '',
-					'x-dead-letter-routing-key': EventQueue.LINK_SERVICE,
-				},
 			},
-			exchange: EVENTS_EXCHANGE,
-			exchangeType: EXCHANGE_TYPE,
 			noAck: false,
+			exchangeType: EXCHANGE_TYPE,
 		},
 	}
 }
@@ -46,9 +40,9 @@ export function getLinkServiceConfig(rabbitmqUrl: string): ClientProviderOptions
 		transport: Transport.RMQ,
 		options: {
 			urls: [rabbitmqUrl],
-			// НЕ указываем queue для клиента-публикатора
 			exchange: EVENTS_EXCHANGE,
 			exchangeType: EXCHANGE_TYPE,
+			queue: EventQueue.LINK_SERVICE,
 			persistent: true,
 		},
 	}
