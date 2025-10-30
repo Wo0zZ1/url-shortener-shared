@@ -18,6 +18,7 @@ export interface RegisterGuestResponse {
  */
 export interface RegisterUserResponse {
 	createdUser: UserEntity
+	tokens: Tokens
 }
 
 /**
