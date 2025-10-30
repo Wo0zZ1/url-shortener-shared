@@ -31,11 +31,7 @@ export function getAuthMicroserviceConfig(rabbitmqUrl: string): MicroserviceOpti
 				},
 			},
 			exchange: EVENTS_EXCHANGE,
-			exchangeOptions: {
-				type: EXCHANGE_TYPE, // 'fanout' - рассылает всем
-				durable: true,
-			},
-			// Для fanout routing key не нужен (игнорируется)
+			exchangeType: EXCHANGE_TYPE,
 			noAck: false,
 		},
 	}
@@ -55,10 +51,7 @@ export function getAuthServiceConfig(rabbitmqUrl: string): ClientProviderOptions
 			urls: [rabbitmqUrl],
 			// НЕ указываем queue для клиента-публикатора
 			exchange: EVENTS_EXCHANGE,
-			exchangeOptions: {
-				type: EXCHANGE_TYPE, // 'fanout'
-				durable: true,
-			},
+			exchangeType: EXCHANGE_TYPE,
 			persistent: true,
 		},
 	}

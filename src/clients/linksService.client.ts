@@ -31,10 +31,7 @@ export function getLinkMicroserviceConfig(rabbitmqUrl: string): MicroserviceOpti
 				},
 			},
 			exchange: EVENTS_EXCHANGE,
-			exchangeOptions: {
-				type: EXCHANGE_TYPE, // 'fanout'
-				durable: true,
-			},
+			exchangeType: EXCHANGE_TYPE,
 			noAck: false,
 		},
 	}
@@ -51,10 +48,7 @@ export function getLinkServiceConfig(rabbitmqUrl: string): ClientProviderOptions
 			urls: [rabbitmqUrl],
 			// НЕ указываем queue для клиента-публикатора
 			exchange: EVENTS_EXCHANGE,
-			exchangeOptions: {
-				type: EXCHANGE_TYPE, // 'fanout'
-				durable: true,
-			},
+			exchangeType: EXCHANGE_TYPE,
 			persistent: true,
 		},
 	}
