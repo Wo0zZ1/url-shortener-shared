@@ -29,13 +29,3 @@ export type UpdateUserByIdResponse = UserEntity
  * Response for PATCH /users/uuid/:uuid
  */
 export type UpdateUserByUuidResponse = UserEntity
-
-/**
- * Response for DELETE /users/id/:id
- */
-export type DeleteUserByIdResponse = UserEntity
-
-/**
- * Response for DELETE /users/uuid/:uuid
- */
-export type DeleteUserByUuidResponse = UserEntity
