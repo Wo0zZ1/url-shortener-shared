@@ -5,17 +5,6 @@ import {
 } from '@nestjs/microservices'
 import { EventQueue, EventService, EVENTS_EXCHANGE, EXCHANGE_TYPE } from '../events'
 
-/**
- * Конфигурация Link Service как микросервиса (для приема событий)
- *
- * Fanout Exchange рассылает ВСЕ события ВО ВСЕ привязанные очереди
- * Фильтрация происходит внутри сервиса через @EventPattern()
- *
- * Пример обработчиков в LINK_SERVICE:
- * @EventPattern('user.deleted')             - обработает (каскадное удаление ссылок)
- * @EventPattern('user.migrated.from.guest') - обработает (перенос ссылок)
- * user.created - придет в очередь, но будет проигнорирован
- */
 export function getLinkMicroserviceConfig(rabbitmqUrl: string): MicroserviceOptions {
 	return {
 		transport: Transport.RMQ,
@@ -23,16 +12,13 @@ export function getLinkMicroserviceConfig(rabbitmqUrl: string): MicroserviceOpti
 			urls: [rabbitmqUrl],
 			queue: EventQueue.LINK_SERVICE,
 			queueOptions: { durable: true },
-			// exchange: EVENTS_EXCHANGE,
-			// exchangeType: EXCHANGE_TYPE,
+			exchange: EVENTS_EXCHANGE,
+			exchangeType: EXCHANGE_TYPE,
 			noAck: false,
 		},
 	}
 }
 
-/**
- * Конфигурация Link Service как клиента (для отправки событий)
- */
 export function getLinkServiceConfig(rabbitmqUrl: string): ClientProviderOptions {
 	return {
 		name: EventService.LINK_SERVICE,
@@ -41,8 +27,6 @@ export function getLinkServiceConfig(rabbitmqUrl: string): ClientProviderOptions
 			urls: [rabbitmqUrl],
 			exchange: EVENTS_EXCHANGE,
 			exchangeType: EXCHANGE_TYPE,
-			queue: EventQueue.LINK_SERVICE,
-			queueOptions: { durable: true },
 			persistent: true,
 		},
 	}
