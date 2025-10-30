@@ -1,11 +1,11 @@
 {
 	"name": "@wo0zz1/url-shortener-shared",
 	"description": "Shared utilities for NestJS url shortener",
-	"version": "0.1.25",
+	"version": "0.1.26",
 	"main": "dist/index.js",
 	"scripts": {
 		"build": "tsc",
-		"version:update": "yarn build && git add . && yarn version --patch && git push && yarn publish"
+		"version:update": "yarn build && git add . && yarn version --patch && git push --tags && yarn publish --no-push"
 	},
 	"author": "Wo0zZ1",
 	"license": "MIT",
