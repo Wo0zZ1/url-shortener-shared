@@ -3,14 +3,14 @@ import {
 	MicroserviceOptions,
 	Transport,
 } from '@nestjs/microservices'
-import { EventQueue, EventService, EVENTS_EXCHANGE, ALL_EVENTS_ROUTING_KEY } from '../events'
+import { EventQueue, EventService, EVENTS_EXCHANGE, EXCHANGE_TYPE } from '../events'
 
 /**
  * Конфигурация Link Service как микросервиса (для приема событий)
- * 
- * Очередь получает ВСЕ события (routing key: '#')
+ *
+ * Fanout Exchange рассылает ВСЕ события ВО ВСЕ привязанные очереди
  * Фильтрация происходит внутри сервиса через @EventPattern()
- * 
+ *
  * Пример обработчиков в LINK_SERVICE:
  * @EventPattern('user.deleted')             - обработает (каскадное удаление ссылок)
  * @EventPattern('user.migrated.from.guest') - обработает (перенос ссылок)
@@ -32,10 +32,9 @@ export function getLinkMicroserviceConfig(rabbitmqUrl: string): MicroserviceOpti
 			},
 			exchange: EVENTS_EXCHANGE,
 			exchangeOptions: {
-				type: 'topic',
+				type: EXCHANGE_TYPE, // 'fanout'
 				durable: true,
 			},
-			routingKey: ALL_EVENTS_ROUTING_KEY, // '#'
 			noAck: false,
 		},
 	}
@@ -51,13 +50,12 @@ export function getLinkServiceConfig(rabbitmqUrl: string): ClientProviderOptions
 		options: {
 			urls: [rabbitmqUrl],
 			// НЕ указываем queue для клиента-публикатора
-			// queue: EventQueue.LINK_SERVICE, // ← УДАЛЯЕМ!
-			exchange: EVENTS_EXCHANGE, // Публикуем в exchange
+			exchange: EVENTS_EXCHANGE,
 			exchangeOptions: {
-				type: 'topic',
+				type: EXCHANGE_TYPE, // 'fanout'
 				durable: true,
 			},
-			persistent: true, // Сообщения сохраняются на диск
+			persistent: true,
 		},
 	}
 }

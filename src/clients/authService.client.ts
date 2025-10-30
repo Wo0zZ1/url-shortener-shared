@@ -3,17 +3,12 @@ import {
 	Transport,
 	ClientProviderOptions,
 } from '@nestjs/microservices'
-import {
-	EventQueue,
-	EventService,
-	EVENTS_EXCHANGE,
-	ALL_EVENTS_ROUTING_KEY,
-} from '../events'
+import { EventQueue, EventService, EVENTS_EXCHANGE, EXCHANGE_TYPE } from '../events'
 
 /**
  * Конфигурация Auth Service как микросервиса (для приема событий)
  *
- * Очередь получает ВСЕ события (routing key: '#')
+ * Fanout Exchange рассылает ВСЕ события ВО ВСЕ привязанные очереди
  * Фильтрация происходит внутри сервиса через @EventPattern()
  *
  * Пример обработчиков в AUTH_SERVICE:
@@ -37,11 +32,10 @@ export function getAuthMicroserviceConfig(rabbitmqUrl: string): MicroserviceOpti
 			},
 			exchange: EVENTS_EXCHANGE,
 			exchangeOptions: {
-				type: 'topic',
+				type: EXCHANGE_TYPE, // 'fanout' - рассылает всем
 				durable: true,
 			},
-			// Получаем ВСЕ события, фильтруем через @EventPattern
-			routingKey: ALL_EVENTS_ROUTING_KEY, // '#'
+			// Для fanout routing key не нужен (игнорируется)
 			noAck: false,
 		},
 	}
@@ -49,6 +43,9 @@ export function getAuthMicroserviceConfig(rabbitmqUrl: string): MicroserviceOpti
 
 /**
  * Конфигурация Auth Service как клиента (для отправки событий)
+ *
+ * ВАЖНО: Для публикации событий НЕ указываем queue!
+ * События отправляются в exchange, который сам роутит их по очередям
  */
 export function getAuthServiceConfig(rabbitmqUrl: string): ClientProviderOptions {
 	return {
@@ -59,7 +56,7 @@ export function getAuthServiceConfig(rabbitmqUrl: string): ClientProviderOptions
 			// НЕ указываем queue для клиента-публикатора
 			exchange: EVENTS_EXCHANGE,
 			exchangeOptions: {
-				type: 'topic',
+				type: EXCHANGE_TYPE, // 'fanout'
 				durable: true,
 			},
 			persistent: true,
