@@ -2,10 +2,11 @@ import {
 	MicroserviceOptions,
 	Transport,
 	ClientProviderOptions,
+	RmqOptions,
 } from '@nestjs/microservices'
 import { EventQueue, EventService, EVENTS_EXCHANGE, EXCHANGE_TYPE } from '../events'
 
-export function getAuthMicroserviceConfig(rabbitmqUrl: string): MicroserviceOptions {
+export function getAuthMicroserviceConfig(rabbitmqUrl: string): RmqOptions {
 	return {
 		transport: Transport.RMQ,
 		options: {
@@ -14,6 +15,7 @@ export function getAuthMicroserviceConfig(rabbitmqUrl: string): MicroserviceOpti
 			queueOptions: { durable: true },
 			exchange: EVENTS_EXCHANGE,
 			exchangeType: EXCHANGE_TYPE,
+			wildcards: true,
 			noAck: false,
 		},
 	}
@@ -27,6 +29,7 @@ export function getAuthServiceConfig(rabbitmqUrl: string): ClientProviderOptions
 			urls: [rabbitmqUrl],
 			exchange: EVENTS_EXCHANGE,
 			exchangeType: EXCHANGE_TYPE,
+			wildcards: true,
 			persistent: true,
 		},
 	}
