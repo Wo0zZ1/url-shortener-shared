@@ -1,8 +1,7 @@
-// Exchange for events (shared for all services)
 export const EVENTS_EXCHANGE = 'events_exchange'
 export const EXCHANGE_TYPE = 'topic'
+export const EVENT_EMITTER_NAME = 'EVENT_EMITTER'
 
-// Event Patterns (used in emit() and @EventPattern())
 export enum EEventPattern {
 	// USER domain events
 	USER_CREATED = 'user.created',
@@ -23,21 +22,12 @@ export enum EEventPattern {
 	AUTH_TOKEN_REFRESHED = 'auth.token.refreshed',
 }
 
-// Service Clients
-export enum EventService {
-	USER_SERVICE = 'USER_SERVICE_CLIENT',
-	LINK_SERVICE = 'LINK_SERVICE_CLIENT',
-	AUTH_SERVICE = 'AUTH_SERVICE_CLIENT',
-}
-
 // Queues
 export enum EventQueue {
 	USER_SERVICE = 'user_service_queue',
 	LINK_SERVICE = 'link_service_queue',
 	AUTH_SERVICE = 'auth_service_queue',
 }
-
-// EventsDto (интерфейсы payload для событий)
 
 // User Events
 export interface UserCreatedEvent {
