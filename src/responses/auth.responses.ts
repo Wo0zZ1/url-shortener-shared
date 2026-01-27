@@ -57,7 +57,7 @@ export type GetActiveSessionsResponse = RefreshTokenPayload[]
 /**
  * Response for DELETE /auth/user/:userId/sessions/:jti
  */
-export type RevokeSessionResponse = MessageResponse
+export type RevokeSessionResponse = RefreshTokenPayload
 
 /**
  * Response for DELETE /auth/user/:userId
